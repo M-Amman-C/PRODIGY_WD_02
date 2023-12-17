@@ -6,8 +6,9 @@ var yellow = document.getElementById("yellow");
 var inner = document.getElementById("inner");
 var btn_status = 0;
 var hour = 0;
-var min = 0;
-var sec = 0;
+var min = 59;
+var sec = 55;
+var curr_time = "";
 green.addEventListener("click", ()=>{
     if (btn_status==0){
         yellow.disabled=false;
@@ -16,8 +17,24 @@ green.addEventListener("click", ()=>{
         btn_status = 1;
         green.innerHTML = "STOP";
         timer = setInterval(()=>{
+            curr_time = "";
             sec = sec+1;
-            time.innerHTML = hour+":"+min+":"+sec;
+            if (hour<10){
+                curr_time += "0"+hour+":";
+            } else{
+                curr_time += hour+":";
+            }
+            if (min<10){
+                curr_time += "0"+min+":";
+            } else{
+                curr_time += min+":";
+            }
+            if (sec<10){
+                curr_time += "0"+sec;   
+            } else{
+                curr_time += sec;
+            }
+            time.innerHTML = curr_time;
 
             if (sec==59){
                 min = min+1;
@@ -41,8 +58,7 @@ green.addEventListener("click", ()=>{
 });
 
 yellow.addEventListener("click",()=>{
-    var lap_time = hour+":"+min+":"+sec;
-    inner.innerHTML+= "<br>"+lap_time;
+    inner.innerHTML+= "<br>"+curr_time;
     outBox.style.backgroundColor = "#FFD700";
     setTimeout(()=>{
         outBox.style.backgroundColor = "#00A800";
@@ -56,7 +72,7 @@ red.addEventListener("click",()=>{
     btn_status = 0;
     green.innerHTML = "START";
     clearInterval(timer);
-    time.innerHTML = hour+":"+min+":"+sec;
+    time.innerHTML = "00:00:00";
     inner.innerHTML = "LAPS"
     yellow.disabled=true;
 })
