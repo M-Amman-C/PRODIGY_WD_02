@@ -6,8 +6,8 @@ var yellow = document.getElementById("yellow");
 var inner = document.getElementById("inner");
 var btn_status = 0;
 var hour = 0;
-var min = 59;
-var sec = 55;
+var min = 0;
+var sec = 0;
 var curr_time = "";
 green.addEventListener("click", ()=>{
     if (btn_status==0){
