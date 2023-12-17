@@ -41,6 +41,9 @@ green.addEventListener("click", ()=>{
 red.addEventListener("click",()=>{
     outBox.style.backgroundColor = "#111111";
     sec = min = hour = 0;
+    green.setAttribute('class', 'btn green');
+    btn_status = 0;
+    green.innerHTML = "START";
     clearInterval(timer);
     time.innerHTML = hour+":"+min+":"+sec;
 })
